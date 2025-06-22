@@ -9,6 +9,7 @@ import org.badis.digitbankbackend.enums.OperationType;
 import org.badis.digitbankbackend.repositories.AccountOperationRepository;
 import org.badis.digitbankbackend.repositories.BankAccountRepository;
 import org.badis.digitbankbackend.repositories.CustomerRepository;
+import org.badis.digitbankbackend.services.BankService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,6 +27,13 @@ public class DigitBankBackendApplication {
     }
 
     @Bean
+    CommandLineRunner commandLineRunner(BankService bankService){
+        return args -> {
+           bankService.consulter();
+        };
+    }
+
+   // @Bean
     CommandLineRunner start(CustomerRepository customerRepository,
                             BankAccountRepository bankAccountRepository,
                             AccountOperationRepository accountOperationRepository){
